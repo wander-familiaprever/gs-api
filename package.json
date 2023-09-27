@@ -1,0 +1,11 @@
+{
+  "name": "gs-api",
+  "version": "1.0.0",
+  "description": "Rest Api dos sistemas GS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wander S. Moschetta",
+  "license": "ISC"
+}
