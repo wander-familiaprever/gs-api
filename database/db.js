@@ -1,5 +1,5 @@
 const sql = require('mssql');
-const { dbName, dbConfig } = require('./config.json');
+const { dbName, dbConfig } = require('../config.json');
 
 module.exports = db = { sql, initialize};
 

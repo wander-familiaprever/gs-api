@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const url_base = '/gs/api/v1'
+const cors = require('cors');
+const db = require('./database/db');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -14,7 +16,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 
+db.initialize();
 
 app.use(`${url_base}`, indexRouter);
 app.use(`${url_base}/users`, usersRouter);
