@@ -10,4 +10,18 @@ router.get('/', verificaToken, async function(req, res, next) {
   res.json(usuarios);
 });
 
+router.post('/login', verificaToken, async function(req, res, next){
+  var login = false
+  const { usuario, senha } = req.body;
+  
+  const retornoUsuario = await db.sql.query(`select codigo from Usuarios where nick = '${usuario}' and senha = '${senha}' `);  
+  
+  if(retornoUsuario.rowsAffected[0] > 0)
+    login = true
+  
+  res.json({logar: login})
+});
+
+
+
 module.exports = router;
