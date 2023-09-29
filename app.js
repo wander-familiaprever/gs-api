@@ -3,14 +3,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const url_base = '/gs/api/v1'
+var app = express();
+
 const cors = require('cors');
 const db = require('./database/db');
+const { urlBase } = require('./config.json');
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -20,15 +23,16 @@ app.use(cors());
 
 db.initialize();
 
-app.use(`${url_base}`, indexRouter);
-app.use(`${url_base}/users`, usersRouter);
+app.use(`${urlBase}`, indexRouter);
+app.use(`${urlBase}/users`, usersRouter);
 
-// catch 404 and forward to error handler
+
+
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
+
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
@@ -38,5 +42,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
